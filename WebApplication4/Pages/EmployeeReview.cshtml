@@ -1,0 +1,135 @@
+@page
+@model EmployeeReviewModel
+@{
+    ViewData["Title"] = "Employee Records Review";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Employee Records - Review</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+:root{color-scheme:light;--n:#0b2a73;--ln:#dde1e8}
+body{background:#f5f5f5;color:#111;font-family:Arial,Helvetica,sans-serif;font-size:15px}
+.scroll{overflow-x:auto;padding:8px}
+.frm{min-width:1100px;max-width:1536px;margin:0 auto;border:1px solid #8f99ae;border-radius:6px;padding:10px 8px 8px;background:#fff}
+.co{color:var(--n);font-weight:bold;font-size:25px;letter-spacing:.5px;border-bottom:1px solid var(--n)}
+.tag{font:italic bold 14px Arial;color:var(--n);margin:5px 0 0 22px}
+h1{color:var(--n);font-size:44px;letter-spacing:-1px;white-space:nowrap;font-weight:bold;margin:0}
+.header{display:flex;justify-content:space-between;align-items:center;px-3;pb-3;pt-1;padding:20px}
+.table-wrapper{margin:20px;border-radius:6px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+table{width:100%;border-collapse:collapse;background:#fff}
+th{background:var(--n);color:#fff;padding:12px;text-align:left;font-weight:bold}
+td{padding:12px;border-bottom:1px solid #ddd}
+tr:hover{background:#f9f9f9}
+.action-btn{padding:6px 12px;margin:0 4px;border-radius:4px;border:none;cursor:pointer;font-weight:bold;text-decoration:none;display:inline-block;font-size:13px}
+.edit-btn{background:#2196F3;color:#fff}
+.edit-btn:hover{background:#0b7dda}
+.delete-btn{background:#dc3545;color:#fff}
+.delete-btn:hover{background:#c82333}
+.view-btn{background:#17a2b8;color:#fff}
+.view-btn:hover{background:#0c5460}
+.success-msg{background:#d4edda;border:1px solid #c3e6cb;color:#155724;padding:12px;margin:20px;border-radius:4px}
+.nav-buttons{display:flex;gap:10px;margin:20px;justify-content:flex-start}
+.nav-buttons a,.nav-buttons button{padding:8px 20px;border-radius:4px;border:1px solid #b5bcc9;background:linear-gradient(#f5f6f8,#e2e5ea);color:#111;text-decoration:none;cursor:pointer;font-weight:bold}
+.nav-buttons a:hover,.nav-buttons button:hover{background:linear-gradient(#e2e5ea,#d5d8de)}
+.nav-buttons a.create{background:var(--n);color:#fff;border-color:var(--n)}
+.nav-buttons a.create:hover{background:#082058}
+.empty-state{text-align:center;padding:40px;color:#666}
+.empty-state svg{width:100px;height:100px;margin-bottom:20px;opacity:0.5}
+</style>
+</head>
+<body>
+<div class="scroll"><div class="frm">
+
+<div class="header">
+  <div class="d-flex align-items-center gap-3">
+    <svg width="64" height="58" viewBox="0 0 64 58" fill="#1c3a8a"><circle cx="32" cy="9" r="8"/><path d="M17 40a15 14 0 0130 0v14H17z"/><circle cx="10" cy="22" r="6"/><circle cx="54" cy="22" r="6"/><path d="M0 46a12 12 0 0112-12h2v18H0zM64 46a12 12 0 00-12-12h-2v18h14z"/></svg>
+    <div><div class="co">YOUR COMPANY</div><div class="tag">...Together We Achieve</div></div>
+  </div>
+  <h1 style="font-size:32px">EMPLOYEE RECORDS</h1>
+  <div></div>
+</div>
+
+@if(!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="success-msg">✓ @Model.SuccessMessage</div>
+}
+
+@if(TempData["ErrorMessage"] != null)
+{
+    <div style="background:#f8d7da; border:1px solid #f5c6cb; color:#721c24; padding:12px; margin:20px; border-radius:4px">
+        ✗ @TempData["ErrorMessage"]
+    </div>
+}
+
+<div class="nav-buttons">
+  <a href="/" class="nav-link">← Back to Home</a>
+  <a href="/PersonalInformation" class="create">+ Create New Record</a>
+  <form method="POST" action="/EmployeeReview?handler=Reseed" style="display:inline; margin:0">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="nav-link" style="background:#FFC107; color:#000; cursor:pointer; margin-left:10px" onclick="return confirm('This will renumber all employee IDs sequentially. Continue?')">↻ Reseed IDs</button>
+  </form>
+</div>
+
+@if(Model.EmployeeRecords.Any())
+{
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Gender</th>
+                    <th>Nationality</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var employee in Model.EmployeeRecords)
+                {
+                    <tr>
+                        <td>@employee.Id</td>
+                        <td>@employee.Firstname</td>
+                        <td>@employee.Lastname</td>
+                        <td>@employee.Email</td>
+                        <td>@employee.PhoneNO</td>
+                        <td>@employee.GenderType</td>
+                        <td>@employee.Nationality</td>
+                        <td>
+                            <a href="/EditEmployee/@employee.Id" class="action-btn edit-btn">Edit</a>
+                            <a href="/ViewEmployee/@employee.Id" class="action-btn view-btn">View</a>
+                            <form method="POST" action="/EmployeeReview" style="display:inline; margin:0">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="employeeId" value="@employee.Id">
+                                <button type="submit" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this record?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" /></svg>
+        <h3>No Employee Records Found</h3>
+        <p>Start by creating a new employee record.</p>
+        <a href="/PersonalInformation" class="nav-buttons"><span class="create" style="padding:10px 30px">Create New Record</span></a>
+    </div>
+}
+
+</div></div>
+
+<script>
+</script>
+</body>
+</html>

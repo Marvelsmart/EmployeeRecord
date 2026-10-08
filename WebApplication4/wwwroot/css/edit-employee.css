@@ -1,0 +1,27 @@
+:root{color-scheme:light;--n:#0b2a73;--ln:#dde1e8}
+body{background:#fff;color:#111;font-family:Arial,Helvetica,sans-serif;font-size:15px}
+.scroll{overflow-x:auto;padding:8px}
+.frm{min-width:1100px;max-width:1536px;margin:0 auto;border:1px solid #8f99ae;border-radius:6px;padding:10px 8px 8px}
+.co{color:var(--n);font-weight:bold;font-size:25px;letter-spacing:.5px;border-bottom:1px solid var(--n)}
+.tag{font:italic bold 14px Arial;color:var(--n);margin:5px 0 0 22px}
+h1{color:var(--n);font-size:44px;letter-spacing:-1px;white-space:nowrap;font-weight:bold;margin:0}
+.sec{background:var(--n);color:#fff;font-weight:bold;font-size:17px;height:31px;line-height:31px;padding-left:14px;white-space:pre}
+.c{padding:9px 10px 9px 12px;border-right:1px solid var(--ln);border-bottom:1px solid var(--ln);min-width:0}
+.l{display:block;font-weight:bold;font-size:14px;margin-bottom:6px;white-space:nowrap}
+.req::before{content:"* ";color:#d11}
+.frm .form-control,.frm .form-select{height:27px;padding:0 9px;font-size:15px;border:1px solid #b6bcc8;border-radius:2px;color:#222}
+.frm .form-select{padding-right:28px}
+.form-check-input{margin:0;width:16px;height:16px}
+.form-check-input:checked{background-color:var(--n);border-color:var(--n)}
+.ck{display:inline-flex;align-items:center;gap:6px;margin-right:var(--g,16px);cursor:pointer;font-size:14px;font-weight:normal}
+.nav-buttons{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding:0 20px 20px}
+.nav-buttons a,.nav-buttons button{padding:8px 20px;border-radius:4px;border:1px solid #b5bcc9;background:linear-gradient(#f5f6f8,#e2e5ea);color:#111;text-decoration:none;cursor:pointer;font-weight:bold;font-size:15px}
+.nav-buttons a:hover,.nav-buttons button:hover{background:linear-gradient(#e2e5ea,#d5d8de)}
+.nav-buttons button.save{background:#228B22;color:#fff;border-color:#228B22}
+.nav-buttons button.save:hover{background:#1a6b1a}
+.cks{display:flex;align-items:center;flex-wrap:wrap;height:27px}
+.ck.compact{--g:0}
+.page-header-brand{width:300px}
+.not-found{padding:40px;text-align:center}
+.not-found-message{font-size:18px;color:#666}
+.back-link{margin-top:20px;display:inline-block;padding:10px 20px;background:var(--n);color:#fff;border-radius:4px;text-decoration:none}

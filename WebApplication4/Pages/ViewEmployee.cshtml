@@ -1,0 +1,79 @@
+@page "{id:int}"
+@model ViewEmployeeModel
+@{
+    ViewData["Title"] = "View Employee";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>View Employee - Employee Record Form</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="~/css/view-employee.css" />
+</head>
+<body>
+<div class="scroll"><div class="frm">
+
+<div class="d-flex justify-content-between align-items-center px-3 pb-3 pt-1">
+  <div class="d-flex align-items-center gap-3">
+    <svg width="64" height="58" viewBox="0 0 64 58" fill="#1c3a8a"><circle cx="32" cy="9" r="8"/><path d="M17 40a15 14 0 0130 0v14H17z"/><circle cx="10" cy="22" r="6"/><circle cx="54" cy="22" r="6"/><path d="M0 46a12 12 0 0112-12h2v18H0zM64 46a12 12 0 00-12-12h-2v18h14z"/></svg>
+    <div><div class="co">YOUR COMPANY</div><div class="tag">...Together We Achieve</div></div>
+  </div>
+  <h1>EMPLOYEE RECORD - VIEW ONLY</h1>
+</div>
+
+@if (Model.Employee != null)
+{
+    <div class="sec">1.   BASIC PERSONAL DETAILS</div>
+    <div class="row g-0">
+        <div class="col-3 c"><label class="l">First Name:</label><div class="view-value">@Model.Employee.Firstname</div></div>
+        <div class="col-3 c"><label class="l">Middle Name:</label><div class="view-value">@(Model.Employee.Middlename ?? "-")</div></div>
+        <div class="col-3 c"><label class="l">Last Name:</label><div class="view-value">@Model.Employee.Lastname</div></div>
+        <div class="col-3 c border-end-0"><label class="l">Other Name:</label><div class="view-value">@(Model.Employee.Othername ?? "-")</div></div>
+    </div>
+    <div class="row g-0">
+        <div class="col-2 c"><label class="l">Gender:</label><div class="view-value">@Model.Employee.GenderType</div></div>
+        <div class="col-3 c"><label class="l">Date of Birth:</label><div class="view-value">@Model.Employee.Dateofbirth.ToString("dd/MM/yyyy")</div></div>
+        <div class="col-4 c"><label class="l">Marital Status:</label><div class="view-value">@Model.Employee.MaritalStatusType</div></div>
+        <div class="col-3 c"><label class="l">Nationality:</label><div class="view-value">@Model.Employee.Nationality</div></div>
+    </div>
+    <div class="row g-0">
+        <div class="col-3 c"><label class="l">State of Origin:</label><div class="view-value">@Model.Employee.StateOfOrigin</div></div>
+        <div class="col-3 c"><label class="l">L.G.A.:</label><div class="view-value">@Model.Employee.LGA</div></div>
+        <div class="col-3 c"><label class="l">Ethnicity:</label><div class="view-value">@Model.Employee.Ethnicity</div></div>
+        <div class="col-3 c border-end-0"><label class="l">Religion:</label><div class="view-value">@Model.Employee.Religion</div></div>
+    </div>
+    <div class="row g-0">
+        <div class="col-3 c"><label class="l">Phone Number:</label><div class="view-value">@Model.Employee.PhoneNO</div></div>
+        <div class="col-4 c"><label class="l">Alternate Phone:</label><div class="view-value">@(Model.Employee.AlternatePhoneNO ?? "-")</div></div>
+        <div class="col-5 c border-end-0"><label class="l">Email Address:</label><div class="view-value">@Model.Employee.Email</div></div>
+    </div>
+    <div class="row g-0"><div class="col-12 c border-end-0"><label class="l">Residential Address:</label><div class="view-value">@Model.Employee.Address</div></div></div>
+    <div class="row g-0">
+        <div class="col-4 c"><label class="l">City/Town:</label><div class="view-value">@Model.Employee.City</div></div>
+        <div class="col-2 c"><label class="l">State:</label><div class="view-value">@Model.Employee.State</div></div>
+        <div class="col-3 c"><label class="l">Country:</label><div class="view-value">@Model.Employee.Country</div></div>
+        <div class="col-3 c border-end-0"><label class="l">Postal Code:</label><div class="view-value">@Model.Employee.Postalcode</div></div>
+    </div>
+
+    <div class="nt"><b>NOTE:</b> This is a read-only view of the employee record. To make changes, use the Edit button from the Records page.</div>
+
+    <div class="nav-buttons">
+        <a href="/EmployeeReview" class="back">← Back to Records</a>
+        <a href="/EditEmployee/@Model.Employee.Id">Edit Record →</a>
+    </div>
+}
+else
+{
+    <div class="not-found">
+    <div class="not-found-message">Employee record not found.</div>
+    <a href="/EmployeeReview" class="back-link">Back to Records</a>
+    </div>
+}
+
+</div></div>
+
+</body>
+</html>

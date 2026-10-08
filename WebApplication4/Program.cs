@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using EmployeeRecord.Data;
 using EmployeeRecord.Models;
-using EmployeeRecord.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +11,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register Personalinfo service
-builder.Services.AddScoped<Personalinfo>();
+// builder.Services.AddScoped<Personalinfo>();
 
 
 var app = builder.Build();

@@ -24,6 +24,23 @@
         public required string Country { get; set; }
         public required string Postalcode { get; set; }
 
+        // Identification Documents
+        public string? NationalID { get; set; }
+        public string? DriversLicense { get; set; }
+        public string? Passport { get; set; }
+        public DateTime? DateofIssue { get; set; }
+        public string? PlaceofIssue { get; set; }
+        public DateTime? ExpiryDate { get; set; }
+
+        // Demographic Information
+        public string? BloodGroup { get; set; }
+        public string? Genotype { get; set; }
+        public string? HasDisability { get; set; }
+        public string? DisabilityDetails { get; set; }
+        public int? Height { get; set; }
+        public int? Weight { get; set; }
+        public string? Complexion { get; set; }
+        public string? Hobbies { get; set; }
     }
 
 }

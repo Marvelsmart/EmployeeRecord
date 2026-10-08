@@ -1,0 +1,21 @@
+:root{color-scheme:light;--n:#0b2a73;--ln:#dde1e8}
+body{background:#fff;color:#111;font-family:Arial,Helvetica,sans-serif;font-size:15px}
+.scroll{overflow-x:auto;padding:8px}
+.frm{min-width:1100px;max-width:1536px;margin:0 auto;border:1px solid #8f99ae;border-radius:6px;padding:10px 8px 8px}
+.co{color:var(--n);font-weight:bold;font-size:25px;letter-spacing:.5px;border-bottom:1px solid var(--n)}
+.tag{font:italic bold 14px Arial;color:var(--n);margin:5px 0 0 22px}
+h1{color:var(--n);font-size:44px;letter-spacing:-1px;white-space:nowrap;font-weight:bold;margin:0}
+.sec{background:var(--n);color:#fff;font-weight:bold;font-size:17px;height:31px;line-height:31px;padding-left:14px;white-space:pre}
+.c{padding:9px 10px 9px 12px;border-right:1px solid var(--ln);border-bottom:1px solid var(--ln);min-width:0}
+.l{display:block;font-weight:bold;font-size:14px;margin-bottom:6px;white-space:nowrap}
+.view-value{padding:6px 9px;background:#f5f5f5;border-radius:3px;border:1px solid #ddd;min-height:27px;display:flex;align-items:center}
+.nav-buttons{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding:0 20px 20px}
+.nav-buttons a{padding:8px 20px;border-radius:4px;border:1px solid #b5bcc9;background:linear-gradient(#f5f6f8,#e2e5ea);color:#111;text-decoration:none;cursor:pointer;font-weight:bold;display:inline-block}
+.nav-buttons a:hover{background:linear-gradient(#e2e5ea,#d5d8de)}
+.nav-buttons a.back{background:var(--n);color:#fff;border-color:var(--n)}
+.nav-buttons a.back:hover{background:#082058}
+.nt{border-top:1px solid var(--ln);margin-top:6px;padding:7px 10px 2px;font-size:13px}
+.nt b{color:#c1121f}
+.not-found{padding:40px;text-align:center}
+.not-found-message{font-size:18px;color:#666}
+.back-link{margin-top:20px;display:inline-block;padding:10px 20px;background:var(--n);color:#fff;border-radius:4px;text-decoration:none}
